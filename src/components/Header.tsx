@@ -102,10 +102,10 @@ const Header = () => {
             </DropdownMenuContent>
           </DropdownMenu>
           <ThemeToggle />
-          <Button variant="ghost" asChild className="rounded-xl text-sm">
+          <Button variant="ghost" asChild className="rounded-full text-sm px-6">
             <Link to="/login">Đăng nhập</Link>
           </Button>
-          <Button asChild className="rounded-xl bg-neon text-neon-foreground hover:bg-neon/90 font-semibold text-sm shadow-neon">
+          <Button asChild className="rounded-full bg-neon text-neon-foreground hover:bg-neon/90 font-semibold text-sm shadow-neon px-6">
             <Link to="/register">Đăng ký</Link>
           </Button>
         </div>
@@ -144,10 +144,10 @@ const Header = () => {
             </div>
           </details>
           <div className="flex gap-2 pt-2">
-            <Button variant="ghost" asChild className="flex-1 rounded-xl">
+            <Button variant="ghost" asChild className="flex-1 rounded-full">
               <Link to="/login" onClick={() => setMobileOpen(false)}>Đăng nhập</Link>
             </Button>
-            <Button asChild className="flex-1 rounded-xl bg-neon text-neon-foreground hover:bg-neon/90">
+            <Button asChild className="flex-1 rounded-full bg-neon text-neon-foreground hover:bg-neon/90">
               <Link to="/register" onClick={() => setMobileOpen(false)}>Đăng ký</Link>
             </Button>
           </div>

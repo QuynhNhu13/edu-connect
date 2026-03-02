@@ -49,7 +49,7 @@ const Register = () => {
                 <button
                   key={r.key}
                   onClick={() => setRole(r.key)}
-                  className={`flex-1 py-2.5 rounded-2xl text-sm font-semibold transition-all ${
+                  className={`flex-1 py-2.5 rounded-full text-sm font-semibold transition-all ${
                     role === r.key
                       ? "bg-neon text-neon-foreground shadow-neon"
                       : "bg-muted text-muted-foreground hover:bg-muted/80"
@@ -77,7 +77,7 @@ const Register = () => {
                 <Label htmlFor="confirmPassword">Xác nhận mật khẩu</Label>
                 <Input id="confirmPassword" type="password" placeholder="••••••••" className="mt-1.5 rounded-xl h-11" value={formData.confirmPassword} onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })} required />
               </div>
-              <Button type="submit" disabled={loading} className="w-full h-12 rounded-2xl bg-neon text-neon-foreground hover:bg-neon/90 text-base font-bold shadow-neon">
+              <Button type="submit" disabled={loading} className="w-full h-12 rounded-full bg-neon text-neon-foreground hover:bg-neon/90 text-base font-bold shadow-neon">
                 {loading ? <><Loader2 className="w-4 h-4 animate-spin mr-2" /> Đang xử lý...</> : "Đăng ký"}
               </Button>
             </form>

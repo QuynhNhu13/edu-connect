@@ -16,11 +16,11 @@ const bullets = [
 ];
 
 const avatars = [
-  "https://api.dicebear.com/9.x/personas/svg?seed=Tuan&backgroundColor=b6e3f4",
-  "https://api.dicebear.com/9.x/personas/svg?seed=Huong&backgroundColor=c0aede",
-  "https://api.dicebear.com/9.x/personas/svg?seed=Mai&backgroundColor=ffd5dc",
-  "https://api.dicebear.com/9.x/personas/svg?seed=Anh&backgroundColor=c0f0d4",
-  "https://api.dicebear.com/9.x/personas/svg?seed=Duc&backgroundColor=d1d4f9",
+  "https://randomuser.me/api/portraits/men/32.jpg",
+  "https://randomuser.me/api/portraits/women/44.jpg",
+  "https://randomuser.me/api/portraits/women/68.jpg",
+  "https://randomuser.me/api/portraits/men/75.jpg",
+  "https://randomuser.me/api/portraits/men/22.jpg",
 ];
 
 const HeroSection = () => {
@@ -80,13 +80,13 @@ const HeroSection = () => {
             </ul>
 
             <div className="flex flex-wrap gap-4 mb-12">
-              <Button size="lg" asChild className="bg-neon text-neon-foreground hover:bg-neon/90 text-body px-8 h-13 rounded-2xl font-bold shadow-neon group">
+              <Button size="lg" asChild className="bg-neon text-neon-foreground hover:bg-neon/90 text-body px-10 h-14 rounded-full font-bold shadow-neon group">
                 <Link to="/find-tutor" className="flex items-center gap-2">
                   Tìm gia sư ngay
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" asChild className="border-white/20 text-white hover:bg-white/10 text-body px-8 h-13 rounded-2xl font-semibold">
+              <Button size="lg" variant="outline" asChild className="border-white/20 text-white hover:bg-white/10 text-body px-10 h-14 rounded-full font-semibold">
                 <Link to="/register-tutor">Đăng ký làm gia sư</Link>
               </Button>
             </div>
@@ -136,7 +136,7 @@ const HeroSection = () => {
             <motion.div
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="self-end bg-neon text-neon-foreground px-6 py-3 rounded-2xl font-bold text-sm shadow-neon"
+              className="self-end bg-neon text-neon-foreground px-8 py-3.5 rounded-full font-bold text-sm shadow-neon"
             >
               AI-Powered Platform
             </motion.div>
