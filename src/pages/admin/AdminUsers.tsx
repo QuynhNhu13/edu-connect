@@ -26,16 +26,6 @@ const statusOptions = [
   { value: "suspended", label: "Tạm khóa" },
 ];
 
-const subjectOptions = [
-  { value: "all", label: "Tất cả môn" },
-  { value: "Toán", label: "Toán" },
-  { value: "Văn", label: "Văn" },
-  { value: "Anh", label: "Anh" },
-  { value: "Lý", label: "Lý" },
-  { value: "Hóa", label: "Hóa" },
-  { value: "Sinh", label: "Sinh" },
-  { value: "Sử", label: "Sử" },
-];
 
 const statusLabel: Record<string, string> = { pending: "Chờ duyệt", approved: "Hoạt động", rejected: "Từ chối", suspended: "Tạm khóa" };
 const statusColor: Record<string, string> = {
@@ -53,7 +43,6 @@ const AdminUsers = () => {
   const [tab, setTab] = useState("all");
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
-  const [subjectFilter, setSubjectFilter] = useState("all");
   const [detail, setDetail] = useState<AdminUser | null>(null);
   const [page, setPage] = useState(1);
   const { toast } = useToast();
@@ -61,13 +50,9 @@ const AdminUsers = () => {
   const filtered = useMemo(() => users.filter(u => {
     if (tab !== "all" && u.role !== tab) return false;
     if (statusFilter !== "all" && u.status !== statusFilter) return false;
-    if (subjectFilter !== "all" && u.subject !== subjectFilter) return false;
-    if (search) {
-      const s = search.toLowerCase();
-      if (!u.name.toLowerCase().includes(s) && !u.email.toLowerCase().includes(s) && !(u.subject || "").toLowerCase().includes(s)) return false;
-    }
+    if (search && !u.name.toLowerCase().includes(search.toLowerCase()) && !u.email.toLowerCase().includes(search.toLowerCase())) return false;
     return true;
-  }), [users, tab, statusFilter, subjectFilter, search]);
+  }), [users, tab, statusFilter, search]);
 
   const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
   const paginated = filtered.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
@@ -83,7 +68,7 @@ const AdminUsers = () => {
   };
 
   const resetFilters = () => {
-    setTab("all"); setSearch(""); setStatusFilter("all"); setSubjectFilter("all"); setPage(1);
+    setTab("all"); setSearch(""); setStatusFilter("all"); setPage(1);
   };
 
   const stats = useMemo(() => ({
@@ -128,14 +113,6 @@ const AdminUsers = () => {
             className="pl-10 h-11 rounded-2xl bg-card border-border"
           />
         </div>
-        <Select value={subjectFilter} onValueChange={v => { setSubjectFilter(v); setPage(1); }}>
-          <SelectTrigger className="w-full md:w-44 h-11 rounded-2xl bg-card border-border">
-            <SelectValue placeholder="Lọc theo môn" />
-          </SelectTrigger>
-          <SelectContent>
-            {subjectOptions.map(o => <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>)}
-          </SelectContent>
-        </Select>
         <Select value={statusFilter} onValueChange={v => { setStatusFilter(v); setPage(1); }}>
           <SelectTrigger className="w-full md:w-48 h-11 rounded-2xl bg-card border-border">
             <SelectValue placeholder="Lọc trạng thái" />
@@ -144,7 +121,7 @@ const AdminUsers = () => {
             {statusOptions.map(o => <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>)}
           </SelectContent>
         </Select>
-        {(search || statusFilter !== "all" || subjectFilter !== "all" || tab !== "all") && (
+        {(search || statusFilter !== "all" || tab !== "all") && (
           <Button variant="outline" onClick={resetFilters} className="h-11 rounded-2xl">Xóa lọc</Button>
         )}
       </div>
