@@ -31,6 +31,9 @@ const AdminClasses = () => {
   const [editId, setEditId] = useState<string | null>(null);
   const [form, setForm] = useState(emptyForm);
   const [detailClass, setDetailClass] = useState<AdminClass | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [statusFilterVal, setStatusFilterVal] = useState("all");
+  const [formatFilterVal, setFormatFilterVal] = useState("all");
   const { toast } = useToast();
 
   const students = users.filter(u => u.role === "student" && u.status === "approved");
@@ -87,9 +90,40 @@ const AdminClasses = () => {
         ))}
       </div>
 
-      {/* Action bar */}
-      <div className="flex items-center justify-end">
-        <Button className="rounded-xl" onClick={openCreate}><Plus className="w-4 h-4 mr-1.5" /> Tạo lớp mới</Button>
+      {/* Search + Filters + Action */}
+      <div className="flex flex-col md:flex-row gap-3">
+        <div className="relative flex-1">
+          <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+          <Input
+            placeholder="Tìm theo tên lớp, môn học..."
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+            className="pl-10 h-11 rounded-2xl bg-card border-border"
+          />
+        </div>
+        <Select value={statusFilterVal} onValueChange={setStatusFilterVal}>
+          <SelectTrigger className="w-full md:w-48 h-11 rounded-2xl bg-card border-border">
+            <SelectValue placeholder="Lọc trạng thái" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">Tất cả trạng thái</SelectItem>
+            <SelectItem value="searching">Đang tìm</SelectItem>
+            <SelectItem value="active">Đang học</SelectItem>
+            <SelectItem value="completed">Hoàn thành</SelectItem>
+          </SelectContent>
+        </Select>
+        <Select value={formatFilterVal} onValueChange={setFormatFilterVal}>
+          <SelectTrigger className="w-full md:w-44 h-11 rounded-2xl bg-card border-border">
+            <SelectValue placeholder="Hình thức" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">Tất cả hình thức</SelectItem>
+            <SelectItem value="online">Online</SelectItem>
+            <SelectItem value="offline">Offline</SelectItem>
+            <SelectItem value="hybrid">Hybrid</SelectItem>
+          </SelectContent>
+        </Select>
+        <Button className="rounded-xl h-11" onClick={openCreate}><Plus className="w-4 h-4 mr-1.5" /> Tạo lớp mới</Button>
       </div>
 
       {/* Table */}
@@ -109,7 +143,12 @@ const AdminClasses = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {classes.map(c => (
+              {classes.filter(c => {
+                if (statusFilterVal !== "all" && c.status !== statusFilterVal) return false;
+                if (formatFilterVal !== "all" && c.format !== formatFilterVal) return false;
+                if (searchQuery && !c.name.toLowerCase().includes(searchQuery.toLowerCase()) && !c.subject.toLowerCase().includes(searchQuery.toLowerCase())) return false;
+                return true;
+              }).map(c => (
                 <TableRow key={c.id} className="hover:bg-muted/20 transition-colors">
                   <TableCell className="font-medium text-foreground">{c.name}</TableCell>
                   <TableCell className="text-sm">{getUserName(c.studentId)}</TableCell>
