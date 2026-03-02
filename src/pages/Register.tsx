@@ -49,7 +49,7 @@ const Register = () => {
                 <button
                   key={r.key}
                   onClick={() => setRole(r.key)}
-                  className={`flex-1 py-2.5 rounded-2xl text-sm font-semibold transition-all ${
+                  className={`flex-1 py-2.5 rounded-full text-sm font-semibold transition-all ${
                     role === r.key
                       ? "bg-neon text-neon-foreground shadow-neon"
                       : "bg-muted text-muted-foreground hover:bg-muted/80"
