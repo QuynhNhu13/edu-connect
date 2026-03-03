@@ -18,9 +18,11 @@ const OfficeDashboard = () => {
   const upcomingSessions = attendance.filter(a => a.status === "upcoming");
 
   const quickActions = [
+    { label: "Quản lý đăng ký", icon: UserPlus, action: () => navigate("/office/registrations") },
     { label: "Điểm danh", icon: ClipboardCheck, action: () => navigate("/office/attendance") },
     { label: "Xử lý sự cố", icon: AlertTriangle, action: () => navigate("/office/incidents") },
     { label: "Quản lý lớp", icon: BookOpen, action: () => navigate("/office/classes") },
+    { label: "Lịch hẹn", icon: Calendar, action: () => navigate("/office/appointments") },
     { label: "Xếp lịch AI", icon: CalendarDays, action: () => navigate("/office/ai-schedule") },
   ];
 
