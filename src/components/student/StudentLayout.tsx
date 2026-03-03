@@ -1,5 +1,5 @@
 import { NavLink, Outlet, useNavigate, useLocation } from "react-router-dom";
-import ChatWidget from "@/components/ChatWidget";
+import MessageBubble from "@/components/MessageBubble";
 import {
   LayoutDashboard, BookOpen, Search, CalendarDays, Clock, ClipboardCheck,
   FileText, BarChart3, Trophy, LogOut, PanelLeftClose, PanelLeft,
