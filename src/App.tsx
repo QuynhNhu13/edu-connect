@@ -108,6 +108,17 @@ const App = () => (
                   <Route path="profile" element={<TutorProfile />} />
                 </Route>
                 <Route path="/teacher/meeting/:sessionId" element={<OnlineMeeting />} />
+                <Route path="/student" element={<StudentLayout />}>
+                  <Route index element={<StudentDashboard />} />
+                  <Route path="find-tutor" element={<StudentFindTutor />} />
+                  <Route path="classes" element={<StudentClasses />} />
+                  <Route path="schedule" element={<StudentSchedule />} />
+                  <Route path="availability" element={<StudentAvailability />} />
+                  <Route path="tests" element={<StudentTests />} />
+                  <Route path="mock-exam" element={<StudentMockExam />} />
+                  <Route path="results" element={<StudentResults />} />
+                  <Route path="report" element={<StudentReport />} />
+                </Route>
                 <Route path="/pricing" element={<PlaceholderPage title="Bảng giá" description="Trang bảng giá đang được cập nhật." />} />
                 <Route path="/help" element={<PlaceholderPage title="Trung tâm trợ giúp" description="Trung tâm trợ giúp đang được xây dựng." />} />
                 <Route path="/faq" element={<PlaceholderPage title="Câu hỏi thường gặp" description="Trang FAQ đang được cập nhật." />} />
