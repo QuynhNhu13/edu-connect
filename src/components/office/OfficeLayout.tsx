@@ -19,9 +19,11 @@ const navItems = [
 
 const pageTitles: Record<string, string> = {
   "/office": "Tổng quan",
+  "/office/registrations": "Quản lý đăng ký",
   "/office/attendance": "Quản lý điểm danh",
   "/office/incidents": "Cảnh báo & Sự cố",
   "/office/classes": "Quản lý lớp",
+  "/office/appointments": "Lịch hẹn văn phòng",
   "/office/ai-schedule": "Tự động xếp lịch thông minh",
   "/office/reports": "Báo cáo",
 };
