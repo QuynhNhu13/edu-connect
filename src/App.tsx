@@ -51,6 +51,7 @@ import StudentMockExam from "./pages/student/StudentMockExam";
 import StudentResults from "./pages/student/StudentResults";
 import StudentReport from "./pages/student/StudentReport";
 import StudentChat from "./pages/student/StudentChat";
+import StudentWallet from "./pages/student/StudentWallet";
 
 const queryClient = new QueryClient();
 
