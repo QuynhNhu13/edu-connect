@@ -1,7 +1,7 @@
 import { useStudent } from "@/contexts/StudentContext";
 import { CalendarDays, Clock, Video, MapPin, CheckCircle2, X as XIcon, Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
@@ -9,24 +9,55 @@ import { Badge } from "@/components/ui/badge";
 const daysOfWeek = ["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "CN"];
 const timeSlots = ["08:00", "09:00", "10:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"];
 
+const getWeekRange = (date: Date) => {
+  const d = new Date(date);
+  const day = d.getDay();
+  const diff = d.getDate() - day + (day === 0 ? -6 : 1);
+  const monday = new Date(d.setDate(diff));
+  monday.setHours(0, 0, 0, 0);
+  const sunday = new Date(monday);
+  sunday.setDate(monday.getDate() + 6);
+  sunday.setHours(23, 59, 59, 999);
+  return { monday, sunday };
+};
+
+const formatWeekLabel = (monday: Date, sunday: Date) => {
+  const fmt = (d: Date) => `${d.getDate().toString().padStart(2, "0")}/${(d.getMonth() + 1).toString().padStart(2, "0")}`;
+  return `${fmt(monday)} - ${fmt(sunday)}/${sunday.getFullYear()}`;
+};
+
 const StudentSchedule = () => {
   const { classes } = useStudent();
   const navigate = useNavigate();
   const [view, setView] = useState<"calendar" | "list">("calendar");
+  const [weekOffset, setWeekOffset] = useState(0);
+
+  const currentWeek = useMemo(() => {
+    const now = new Date();
+    now.setDate(now.getDate() + weekOffset * 7);
+    return getWeekRange(now);
+  }, [weekOffset]);
 
   const allSessions = classes.flatMap(c =>
     c.sessions.map(s => ({ ...s, className: c.name, tutorName: c.tutorName, tutorAvatar: c.tutorAvatar, subject: c.subject }))
   ).sort((a, b) => a.date.localeCompare(b.date));
 
+  const weekSessions = useMemo(() => {
+    return allSessions.filter(s => {
+      const d = new Date(s.date);
+      return d >= currentWeek.monday && d <= currentWeek.sunday;
+    });
+  }, [allSessions, currentWeek]);
+
   const upcoming = allSessions.filter(s => s.status === "scheduled");
   const completed = allSessions.filter(s => s.status === "completed");
   const missed = allSessions.filter(s => s.status === "missed");
-  const totalWeekSessions = upcoming.length;
-  const totalWeekHours = upcoming.length * 2;
+  const totalWeekSessions = weekSessions.filter(s => s.status === "scheduled").length;
+  const totalWeekHours = weekSessions.length * 2;
   const attendanceRate = completed.length + missed.length > 0 ? Math.round((completed.length / (completed.length + missed.length)) * 100) : 100;
 
   const getSessionsForDayTime = (day: string, time: string) => {
-    return allSessions.filter(s => {
+    return weekSessions.filter(s => {
       const d = new Date(s.date);
       const dayIndex = d.getDay();
       const dayMap: Record<number, string> = { 1: "Thứ 2", 2: "Thứ 3", 3: "Thứ 4", 4: "Thứ 5", 5: "Thứ 6", 6: "Thứ 7", 0: "CN" };
@@ -112,6 +143,14 @@ const StudentSchedule = () => {
 
       {view === "calendar" ? (
         <div className="bg-card border border-border rounded-2xl p-4 overflow-x-auto">
+          <div className="flex items-center justify-between mb-4">
+            <Button variant="ghost" size="sm" onClick={() => setWeekOffset(o => o - 1)}><ChevronLeft className="w-4 h-4" /></Button>
+            <div className="text-center">
+              <p className="text-sm font-semibold text-foreground">{formatWeekLabel(currentWeek.monday, currentWeek.sunday)}</p>
+              {weekOffset !== 0 && <button className="text-xs text-primary hover:underline mt-1" onClick={() => setWeekOffset(0)}>Về tuần hiện tại</button>}
+            </div>
+            <Button variant="ghost" size="sm" onClick={() => setWeekOffset(o => o + 1)}><ChevronRight className="w-4 h-4" /></Button>
+          </div>
           <table className="w-full min-w-[700px]">
             <thead>
               <tr>
