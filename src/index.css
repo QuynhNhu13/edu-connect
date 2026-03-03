@@ -36,14 +36,15 @@
 
     --radius: 1.25rem;
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5% 26%;
+    --sidebar-background: 218 50% 18%;
+    --sidebar-foreground: 210 20% 93%;
     --sidebar-primary: 224 76% 48%;
     --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 5% 96%;
-    --sidebar-accent-foreground: 240 6% 10%;
-    --sidebar-border: 220 13% 91%;
+    --sidebar-accent: 218 45% 25%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 218 45% 25%;
     --sidebar-ring: 224 76% 48%;
+    --sidebar-muted-foreground: 218 20% 70%;
 
     /* Custom tokens */
     --hero-bg: 222 47% 11%;
