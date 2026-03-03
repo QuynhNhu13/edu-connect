@@ -157,6 +157,7 @@ const App = () => (
                   <Route path="reports" element={<ParentReports />} />
                   <Route path="wallet" element={<ParentWallet />} />
                   <Route path="support" element={<ParentSupport />} />
+                </Route>
                 <Route path="/office" element={<OfficeLayout />}>
                   <Route index element={<OfficeDashboard />} />
                   <Route path="attendance" element={<OfficeAttendance />} />
