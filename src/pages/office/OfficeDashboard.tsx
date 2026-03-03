@@ -2,7 +2,7 @@ import { useOffice } from "@/contexts/OfficeContext";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { BookOpen, AlertTriangle, CalendarDays, Users, ClipboardCheck, Clock, UserPlus, Inbox } from "lucide-react";
+import { BookOpen, AlertTriangle, CalendarDays, Users, ClipboardCheck, Clock, UserPlus, Inbox, Calendar } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const OfficeDashboard = () => {
