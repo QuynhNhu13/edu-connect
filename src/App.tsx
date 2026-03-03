@@ -171,9 +171,11 @@ const App = () => (
                 </Route>
                 <Route path="/office" element={<OfficeLayout />}>
                   <Route index element={<OfficeDashboard />} />
+                  <Route path="registrations" element={<OfficeRegistrations />} />
                   <Route path="attendance" element={<OfficeAttendance />} />
                   <Route path="incidents" element={<OfficeIncidents />} />
                   <Route path="classes" element={<OfficeClasses />} />
+                  <Route path="appointments" element={<OfficeAppointments />} />
                   <Route path="ai-schedule" element={<OfficeAISchedule />} />
                   <Route path="reports" element={<OfficeReports />} />
                 </Route>
