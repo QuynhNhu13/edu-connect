@@ -8,9 +8,11 @@ import { useState, useRef, useEffect } from "react";
 
 const navItems = [
   { to: "/office", icon: LayoutDashboard, label: "Tổng quan", end: true },
+  { to: "/office/registrations", icon: UserPlus, label: "Quản lý đăng ký" },
   { to: "/office/attendance", icon: ClipboardCheck, label: "Quản lý điểm danh" },
   { to: "/office/incidents", icon: AlertTriangle, label: "Cảnh báo & Sự cố" },
   { to: "/office/classes", icon: BookOpen, label: "Quản lý lớp" },
+  { to: "/office/appointments", icon: CalendarDays, label: "Lịch hẹn" },
   { to: "/office/ai-schedule", icon: CalendarCog, label: "Xếp lịch AI" },
   { to: "/office/reports", icon: BarChart3, label: "Báo cáo" },
 ];
