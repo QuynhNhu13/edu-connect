@@ -130,6 +130,7 @@ const App = () => (
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </BrowserRouter>
+          </StudentProvider>
           </TeacherProvider>
           </TutorProvider>
         </AdminProvider>
