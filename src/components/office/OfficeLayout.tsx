@@ -15,6 +15,7 @@ const navItems = [
   { to: "/office/classes", icon: BookOpen, label: "Quản lý lớp" },
   { to: "/office/appointments", icon: CalendarDays, label: "Lịch hẹn" },
   { to: "/office/ai-schedule", icon: CalendarCog, label: "Xếp lịch AI" },
+  { to: "/office/reviews", icon: Star, label: "Đánh giá gia sư" },
   { to: "/office/reports", icon: BarChart3, label: "Báo cáo" },
 ];
 
