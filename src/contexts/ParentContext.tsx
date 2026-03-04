@@ -279,6 +279,7 @@ interface ParentContextType {
   markChatRead: (contactId: string) => void;
   payChildTuition: (classId: string, childId: string, amount: number, description: string) => void;
   depositWallet: (amount: number) => void;
+  withdrawWallet: (amount: number, method: string) => void;
   confirmAttendance: (childId: string, confirmId: string, confirmed: boolean) => void;
 }
 
