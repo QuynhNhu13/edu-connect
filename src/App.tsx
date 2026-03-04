@@ -56,6 +56,7 @@ import StudentResults from "./pages/student/StudentResults";
 import StudentReport from "./pages/student/StudentReport";
 import StudentChat from "./pages/student/StudentChat";
 import StudentWallet from "./pages/student/StudentWallet";
+import StudentReviews from "./pages/student/StudentReviews";
 import ParentLayout from "./components/parent/ParentLayout";
 import ParentDashboard from "./pages/parent/ParentDashboard";
 import ParentChat from "./pages/parent/ParentChat";
