@@ -11,6 +11,7 @@ const navItems = [
   { to: "/finance", icon: LayoutDashboard, label: "Tổng quan", end: true },
   { to: "/finance/transactions", icon: ArrowLeftRight, label: "Quản lý giao dịch" },
   { to: "/finance/payouts", icon: Banknote, label: "Thanh toán gia sư" },
+  { to: "/finance/refunds", icon: RotateCcw, label: "Yêu cầu hoàn tiền" },
   { to: "/finance/reports", icon: BarChart3, label: "Báo cáo tài chính" },
 ];
 
