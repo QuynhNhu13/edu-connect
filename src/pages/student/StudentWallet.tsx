@@ -87,6 +87,21 @@ const StudentWallet = () => {
     setSelectedMethod("");
   };
 
+  const handleWithdraw = () => {
+    const amt = parseInt(amount);
+    if (!amt || amt <= 0 || !selectedMethod) return;
+    if (amt > walletBalance) {
+      toast.error("Số tiền vượt quá số dư ví!");
+      return;
+    }
+    const method = paymentMethods.find(m => m.id === selectedMethod)?.name || selectedMethod;
+    withdrawFromWallet(amt, method);
+    toast.success(`Đã rút ${amt.toLocaleString("vi-VN")}đ qua ${method}`);
+    setShowWithdraw(false);
+    setAmount("");
+    setSelectedMethod("");
+  };
+
   const handlePayTuitionItem = (cls: typeof classes[0]) => {
     if (walletBalance < cls.fee) {
       toast.error("Số dư ví không đủ. Vui lòng nạp thêm tiền.");
