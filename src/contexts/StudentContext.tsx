@@ -398,6 +398,7 @@ interface StudentContextType {
   purchaseMockExam: (examId: string) => void;
   depositToWallet: (amount: number, method: string) => void;
   payTuition: (classId: string, amount: number, description: string) => void;
+  withdrawFromWallet: (amount: number, method: string) => void;
 }
 
 const StudentContext = createContext<StudentContextType | undefined>(undefined);
