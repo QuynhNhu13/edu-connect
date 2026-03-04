@@ -17,6 +17,7 @@ const navItems = [
   { to: "/parent/chat", icon: MessageSquare, label: "Tin nhắn" },
   { to: "/parent/children", icon: Users, label: "Con em" },
   { to: "/parent/reports", icon: BarChart3, label: "Báo cáo học tập" },
+  { to: "/parent/reviews", icon: Star, label: "Đánh giá gia sư" },
   { to: "/parent/wallet", icon: Wallet, label: "Ví & Thanh toán" },
   { to: "/parent/support", icon: HelpCircle, label: "Hỗ trợ" },
 ];
